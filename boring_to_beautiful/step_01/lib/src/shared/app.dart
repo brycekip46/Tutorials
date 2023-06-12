@@ -20,7 +20,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final settings = ValueNotifier(ThemeSettings(
-    sourceColor: Colors.pink, // Replace this color
+    sourceColor: Color.fromARGB(255, 8, 44, 49), // Replace this color
     themeMode: ThemeMode.system,
   ));
   @override
@@ -40,13 +40,16 @@ class _MyAppState extends State<MyApp> {
               child: ValueListenableBuilder<ThemeSettings>(
                 valueListenable: settings,
                 builder: (context, value, _) {
+                  final theme = ThemeProvider.of(context);
+
                   // Create theme instance
                   return MaterialApp.router(
+                    scrollBehavior: const ConstantScrollBehavior(),
                     debugShowCheckedModeBanner: false,
-                    title: 'Flutter Demo',
-                    // Add theme
-                    // Add dark theme
-                    // Add theme mode
+                    title: 'MusixPlayer',
+                    theme: theme.light(settings.value.sourceColor),
+                    darkTheme: theme.dark(settings.value.sourceColor),
+                    themeMode: theme.themeMode(),
                     routeInformationParser: appRouter.routeInformationParser,
                     routeInformationProvider:
                         appRouter.routeInformationProvider,
@@ -61,4 +64,20 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+}
+
+class ConstantScrollBehavior extends ScrollBehavior {
+  const ConstantScrollBehavior();
+
+  Widget buildScrollbar(
+          BuildContext context, Widget child, ScrollableDetails detail) =>
+      child;
+
+  Widget buildOverscrollIndicator(
+          BuildContext context, Widget child, ScrollableDetails details) =>
+      child;
+  TargetPlatform getPlatform(BuildContext context) => TargetPlatform.linux;
+
+  ScrollPhysics getScrollPhysics(BuildContext context) =>
+      const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
 }

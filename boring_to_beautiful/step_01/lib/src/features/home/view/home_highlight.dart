@@ -16,7 +16,8 @@ class HomeHighlight extends StatelessWidget {
       children: [
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(2), // Modify this line
+            padding: const EdgeInsets.symmetric(
+                horizontal: 35, vertical: 5), // Modify this line
             child: Clickable(
               child: SizedBox(
                 height: 275,
@@ -28,7 +29,7 @@ class HomeHighlight extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => launchUrl(Uri.parse('https://docs.flutter.dev')),
+              onTap: () => {},
             ),
           ),
         ),

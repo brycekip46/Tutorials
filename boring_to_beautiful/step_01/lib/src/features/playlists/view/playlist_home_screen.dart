@@ -24,6 +24,15 @@ class PlaylistHomeScreen extends StatelessWidget {
             title: const Text('PLAYLISTS'),
             toolbarHeight: kToolbarHeight * 2,
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              child:
+              Icon(
+                Icons.add,
+                color: Colors.white,
+              );
+            },
+          ),
           body: Column(
             children: [
               Expanded(

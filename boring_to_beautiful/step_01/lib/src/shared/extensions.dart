@@ -3,11 +3,13 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // Add Google Fonts Package import
 
 extension TypographyUtils on BuildContext {
   ThemeData get theme => Theme.of(this);
-  TextTheme get textTheme => theme.textTheme; // Modify this line
+  TextTheme get textTheme =>
+      GoogleFonts.montserratTextTheme(theme.textTheme); // Modify this line
   ColorScheme get colors => theme.colorScheme;
   TextStyle? get displayLarge => textTheme.displayLarge?.copyWith(
         color: colors.onSurface,
@@ -57,7 +59,7 @@ extension TypographyUtils on BuildContext {
 }
 
 extension BreakpointUtils on BoxConstraints {
-  bool get isTablet => maxWidth > 730;
+  bool get isTablet => maxWidth > 600;
   bool get isDesktop => maxWidth > 1200;
   bool get isMobile => !isTablet && !isDesktop;
 }
